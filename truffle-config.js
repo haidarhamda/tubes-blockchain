@@ -49,7 +49,7 @@
 module.exports = {
   rpc: {
     host: "127.0.0.1",
-    port: 8545
+    port: 8550
   },
   /**
    * Networks define how you connect to your ethereum client and let you set the
@@ -70,9 +70,9 @@ module.exports = {
     //
     development: {
       host: "127.0.0.1",
-      port: 8545,
+      port: 8550,
       network_id: "1234567",
-      from: "0x3fde435298844ba4aa9535bfbfb894aaabef945d",
+      from: "0x958fa699531935b982aa1e2dbd4e9d94fc9b3081",
       gas: 8000000,
       gasPrice: 20000000000
     },
@@ -113,7 +113,7 @@ module.exports = {
   // Configure your compilers
   compilers: {
     solc: {
-      version: "0.4.25",      // Fetch exact version from solc-bin (default: truffle's version)
+      version: "0.8.0",      // Fetch exact version from solc-bin (default: truffle's version)
       // docker: true,        // Use "0.5.1" you've installed locally with docker (default: false)
       // settings: {          // See the solidity docs for advice about optimization and evmVersion
       //  optimizer: {
