@@ -31,7 +31,7 @@ contract Oracle {
         return contentViewers[contentId];
     }
 
-    function changeOracle(address _newOracle) public {
+    function changeOracle(address _newOracle) external onlyOracle {
         oracle = _newOracle;
     }
 }

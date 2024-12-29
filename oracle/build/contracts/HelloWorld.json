@@ -69,12 +69,12 @@
     "1234567": {
       "events": {},
       "links": {},
-      "address": "0x1e57aF35Fb677b2C2CA078280BACC8050E59d2aC",
-      "transactionHash": "0xc7e210463976f2d7adffaeb096a47a1baf5b481b8a937bd86c6a9be09e4172ac"
+      "address": "0xc8f9f36D382a94110a19e505B2259A9F8E32eab4",
+      "transactionHash": "0x08bea3060c02a5f064e26e2f9a88aaa39938f781ef6e4341af04743a0dec20e2"
     }
   },
   "schemaVersion": "3.4.16",
-  "updatedAt": "2024-12-29T13:06:05.358Z",
+  "updatedAt": "2024-12-29T12:22:05.406Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",
