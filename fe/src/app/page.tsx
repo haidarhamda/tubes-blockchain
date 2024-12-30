@@ -97,10 +97,26 @@ const Home: React.FC = () => {
   const addContent = async () => {
     try {
       setStatus("Adding content...");
-      await ContentOwnership.methods.addContent(contentId).send({ from: account });
+
+      // Estimate gas for the transaction
+      const gas = await ContentOwnership.methods.addContent(contentId).estimateGas({
+        from: account,
+      });
+
+      // Get the gas price
+      const gasPrice = await web3.eth.getGasPrice();
+
+      // Send the transaction using legacy gas settings
+      await ContentOwnership.methods.addContent(contentId).send({
+        from: account,
+        gas, // Include the estimated gas
+        gasPrice, // Use legacy gas price
+      });
+
       setStatus(`Content ${contentId} added successfully!`);
     } catch (err: any) {
       setStatus(`Error: ${err.message}`);
+      console.error("Error adding content:", err);
     }
   };
 
