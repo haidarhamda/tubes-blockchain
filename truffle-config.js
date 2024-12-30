@@ -49,7 +49,8 @@
 module.exports = {
   rpc: {
     host: "127.0.0.1",
-    port: 8545
+    // port: 8545
+    port: 8548
   },
   /**
    * Networks define how you connect to your ethereum client and let you set the
@@ -70,9 +71,11 @@ module.exports = {
     //
     development: {
       host: "127.0.0.1",
-      port: 8545,
+      // port: 8545,
+      port: 8548,
       network_id: "1234567",
-      from: "465ed3aDCdDc16E12e65C02D16D364A83B558bC8",
+      // from: "465ed3adcddc16e12e65c02d16d364a83b558bc8",
+      from: "1efae72f75b5c30ecf5e41eed4b6711650a34ae4",
       gas: 8000000,
       gasPrice: 20000000000
     },

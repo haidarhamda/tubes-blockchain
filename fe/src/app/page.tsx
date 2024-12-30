@@ -13,24 +13,20 @@ const Home: React.FC = () => {
     const loadBlockchainData = async () => {
       if (typeof window.ethereum !== "undefined") {
         try {
-          // Get accounts on load
           const accounts: string[] = await web3.eth.getAccounts();
           if (accounts.length > 0) {
             setAccount(accounts[0]);
           }
 
-          // Get network ID
           const chainId: BigInt = await web3.eth.getChainId();
           const chainIdNumber = Number(chainId);
           setNetworkId(chainIdNumber);
 
-          // Listen for account changes
           window.ethereum.on("accountsChanged", (accounts: string[]) => {
             setAccount(accounts[0]);
             setStatus("Account switched.");
           });
 
-          // Listen for network changes
           window.ethereum.on("chainChanged", (chainId: string) => {
             const chainIdNumber = Number(chainId);
             setNetworkId(chainIdNumber);
@@ -44,7 +40,6 @@ const Home: React.FC = () => {
 
     loadBlockchainData();
     return () => {
-      // Cleanup listeners when the component is unmounted
       if (window.ethereum) {
         window.ethereum.removeListener("accountsChanged", () => {});
         window.ethereum.removeListener("chainChanged", () => {});
@@ -55,23 +50,18 @@ const Home: React.FC = () => {
   const handleConnectWallet = async () => {
     if (typeof window.ethereum !== "undefined") {
       try {
-        // Reset account state to prevent auto-connection
-        setAccount(""); // This ensures no account is preselected
+        setAccount("");
 
-        // Request the user to connect a wallet account
         const accounts: string[] = await window.ethereum.request({
           method: "eth_requestAccounts",
         });
 
-        // Set the newly connected account
         setAccount(accounts[0]);
 
-        // Get network ID
         const chainId: BigInt = await web3.eth.getChainId();
         const chainIdNumber = Number(chainId); // Convert BigInt to number
         setNetworkId(chainIdNumber);
 
-        // Check if the network matches the required private network ID (1234567)
         if (chainIdNumber !== 1234567) {
           setStatus("Please switch to the correct network (1234567).");
         } else {
@@ -88,7 +78,6 @@ const Home: React.FC = () => {
 
 
   const handleLogout = () => {
-    // Reset account and networkId to disconnect
     setAccount("");
     setNetworkId("");
     setStatus("You have logged out.");
@@ -96,22 +85,25 @@ const Home: React.FC = () => {
 
   const addContent = async () => {
     try {
+      console.log("aaa");
+      console.log(await ContentOwnership.methods);
       setStatus("Adding content...");
 
-      // Estimate gas for the transaction
       const gas = await ContentOwnership.methods.addContent(contentId).estimateGas({
         from: account,
-      });
+      })
 
-      // Get the gas price
+      console.log("Gas estimate:", gas);
       const gasPrice = await web3.eth.getGasPrice();
+      console.log("Gas price:", gasPrice);
 
-      // Send the transaction using legacy gas settings
       await ContentOwnership.methods.addContent(contentId).send({
         from: account,
-        gas, // Include the estimated gas
-        gasPrice, // Use legacy gas price
+        gas:Number(gas),
+        gasPrice:Number(gasPrice)
       });
+
+
 
       setStatus(`Content ${contentId} added successfully!`);
     } catch (err: any) {
@@ -123,10 +115,25 @@ const Home: React.FC = () => {
   const getRoyalty = async () => {
     try {
       setStatus("Requesting royalty...");
-      await ContentOwnership.methods.getRoyalty(contentId).send({ from: account });
+      console.log("aaa");
+
+      const gas = await ContentOwnership.methods.getRoyalty(contentId).estimateGas({
+        from: account,
+      })
+      console.log(gas);
+      const gasPrice = await web3.eth.getGasPrice();
+      console.log(gasPrice);
+
+      await ContentOwnership.methods.getRoyalty(contentId).send({
+        from: account,
+        gas: Number(gas),
+        gasPrice: Number(gasPrice),
+      });
+
       setStatus(`Royalty for content ${contentId} requested successfully!`);
     } catch (err: any) {
       setStatus(`Error: ${err.message}`);
+      console.error("Error requesting royalty:", err);
     }
   };
 
@@ -161,7 +168,7 @@ const Home: React.FC = () => {
           <label className="block mb-2">Content ID:</label>
           <input
               type="text"
-              className="border p-2 w-full"
+              className="border p-2 w-full text-black"
               value={contentId}
               onChange={(e) => setContentId(e.target.value)}
           />

@@ -10,7 +10,7 @@
   "sourceMap": "93:583:0:-:0;;;;;;;;;;;;;;;;;;;",
   "deployedSourceMap": "93:583:0:-:0;;;;;",
   "source": "// SPDX-License-Identifier: MIT\npragma solidity >=0.4.22 <0.9.0;\n// pragma solidity ^0.4.25;\ncontract HelloWorld {\n  // Define a string variable\n  // string name;\n//  constructor() public {\n//  }\n\n  // Modifies the value of string variable (name)\n  // function inputUser(string _name) public {\n  //   name = _name;\n  // }\n\n  // // Validated that the string variable (name) holds the updated value\n  // function dispUser() public view returns(string){\n  //   return (append(\"Hello world! My name is \", name));\n  // }\n\n  // // Appends 2 strings a, b\n  // function append(string a, string b) internal pure returns (string) {\n  //   return string(abi.encodePacked(a, b));\n  // }\n}\n",
-  "sourcePath": "C:\\Users\\USER\\Desktop\\rantaibalok\\tubes-blockchain\\contracts\\HelloWorld.sol",
+  "sourcePath": "/home/suisei/Documents/GitHub/dapps2/contracts/HelloWorld.sol",
   "ast": {
     "absolutePath": "project:/contracts/HelloWorld.sol",
     "exportedSymbols": {
@@ -69,12 +69,12 @@
     "1234567": {
       "events": {},
       "links": {},
-      "address": "0x1e57aF35Fb677b2C2CA078280BACC8050E59d2aC",
-      "transactionHash": "0xc7e210463976f2d7adffaeb096a47a1baf5b481b8a937bd86c6a9be09e4172ac"
+      "address": "0xa70A33C273e024fc064d5b3B07Ba1D73E59EE616",
+      "transactionHash": "0x59b82fdfd7b3cde990ef84cead061ef72671854ffe067bfe0cfb1f283af4a773"
     }
   },
   "schemaVersion": "3.4.16",
-  "updatedAt": "2024-12-29T13:06:05.358Z",
+  "updatedAt": "2024-12-30T07:20:59.355Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",
