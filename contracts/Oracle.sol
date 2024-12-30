@@ -4,7 +4,11 @@ pragma solidity ^0.8.0;
 contract Oracle {
     address public oracle;
     mapping(uint256 => uint256) public contentViewers;
+    mapping(uint256 => uint256) public lastContentViewers;
     mapping(uint256 => uint256) public lastUpdateTime;
+
+    event OracleChanged(address _newOracle);
+    event ContentSet(uint256 contentId, uint256 viewers);
 
     modifier onlyOracle() {
         require(msg.sender == oracle, "Only oracle can call this");
@@ -22,16 +26,26 @@ contract Oracle {
         );
 
         contentViewers[contentId] = viewers;
+        lastContentViewers[contentId] = 0;
 
         lastUpdateTime[contentId] = block.timestamp;
+
+        emit ContentSet(contentId, viewers);
     }
 
 
-    function getContentViewers(uint256 contentId) external view returns (uint256) {
-        return contentViewers[contentId];
+    function getContentViewers(uint256 contentId) public  returns (uint256) {
+        uint256 viewers = contentViewers[contentId] - lastContentViewers[contentId];
+
+        lastContentViewers[contentId] = contentViewers[contentId];
+
+        return viewers;
     }
 
     function changeOracle(address _newOracle) external onlyOracle {
         oracle = _newOracle;
+
+        emit OracleChanged(_newOracle);
     }
+
 }
