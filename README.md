@@ -59,7 +59,7 @@ Catat address Oracle dan Smart Contract yaaaaa!!!
 ```bash
     truffle console
     web3.eth.sendTransaction({from: '81441f063a290b1f3252123029ba09139c80b3b0', to: '{smartContractAddress}', value: 1000000000000000})
-    const contentOwnership = await ContentOwnership();
+    const contentOwnership = await ContentOwnership.deployed();
     contentOwnership.setOracle({oracleAddress});
 ```
 
