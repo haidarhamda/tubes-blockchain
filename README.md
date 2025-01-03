@@ -14,6 +14,11 @@ Aplikasi ini merupakan aplikasi untuk pembayaran royalti konten berbasis private
 
 ## Start Private Chain
 
+Pastikan sudah inisialisasi Geth database
+```bash
+    geth --datadir {folder node} init genesis.json
+```
+
 Terminal 1:
 
 ```bash
